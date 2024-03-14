@@ -1,0 +1,81 @@
+<%- include('../partials/header')%>
+
+<div class="div py-5 border-b text-end">
+  <a href="/add" class="bg-[#b00c1f] px-2 py-1">Add Movie</a>
+</div>
+
+<div class="overflow-x-auto">
+  <table class="w-full mt-5">
+    <thead>
+      <tr>
+        <th class="bg-[#1f1e1e] text-start py-3 px-2 text-sm">No.</th>
+        <th class="bg-[#1f1e1e] text-start py-3 px-2 text-sm">Title</th>
+        <th class="bg-[#1f1e1e] text-start py-3 px-2 text-sm">video</th>
+        <th class="bg-[#1f1e1e] text-start py-3 px-2 text-sm">description</th>
+        <th class="bg-[#1f1e1e] text-start py-3 px-2 text-sm">release year</th>
+        <th class="bg-[#1f1e1e] text-start py-3 px-2 text-sm">genre</th>
+        <th class="bg-[#1f1e1e] text-start py-3 px-2 text-sm">rating</th>
+        <th class="bg-[#1f1e1e] text-start py-3 px-2 text-sm">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if (movies.length>0){ movies.forEach((movie,i)=>{ %>
+      <tr>
+        <td class="bg-black py-3 px-3"><%=i+1%></td>
+        <td class="bg-black py-3 px-2">
+          <div class="flex items-center">
+            <img class="w-[50px] mr-3" src="<%= movie.poster %>" alt="" />
+            <span> <%= movie.title %> </span>
+          </div>
+        </td>
+        <td class="bg-black py-3 px-2">
+          <% if(movie.video){ %>
+          <video
+            class="w-[200px] mr-3 hover:cursor-pointer"
+            src="<%= movie.video %>"
+          ></video>
+          <% } else{ %> video not available <% } %>
+        </td>
+        <td class="bg-black py-3 px-2">
+          <p class="max-w-[400px] text-sm"><%= movie.description %></p>
+        </td>
+        <td class="bg-black py-3 px-2"><%= movie.releaseYear %></td>
+        <td class="bg-black py-3 px-2"><%= movie.genre %></td>
+        <td class="bg-black py-3 px-2"><%= movie.rating %></td>
+        <td class="bg-black py-3 px-2">
+          <a
+            href="/edit/<%=movie.id%>"
+            class="bg-green-500 mr-1 inline-block text-lg px-1 text-white rounded"
+            ><i class="ri-edit-2-line"></i
+          ></a>
+          <a
+            href="/delete/<%=movie.id%>"
+            class="bg-red-600 inline-block text-lg px-1 text-white rounded"
+            ><i class="ri-delete-bin-5-line"></i
+          ></a>
+        </td>
+      </tr>
+      <% }) } else{ %>
+      <tr>
+        <td colspan="8" class="text-center pt-2">No record found</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer')%>
+
+<script>
+  const videos = document.querySelectorAll("video");
+  videos.forEach((video) => {
+    video.addEventListener("mouseover", () => {
+      video.controls = true;
+    });
+
+    video.addEventListener("mouseout", () => {
+      video.controls = false;
+    });
+  });
+</script>
