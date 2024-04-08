@@ -7,7 +7,8 @@ export class MovieController {
         const errors = validationResult(req)
 
         if (!errors.isEmpty()) {
-            return res.render('pages/addMovie', { errors: errors.mapped() })
+            console.log(req.body)
+            return res.render('pages/editMovie', { errors: errors.mapped(), movie: req.body })
         }
 
         try {
