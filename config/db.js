@@ -1,6 +1,9 @@
 import mongoose from 'mongoose'
-// const url = 'mongodb+srv://kevinchauhan:nf7nKrDb1L3kYfhA@cluster0.ngoyxsf.mongodb.net/mflix?retryWrites=true&w=majority&appName=Cluster0'
-const url = 'mongodb://localhost:27017/mflix'
+import dotenv from 'dotenv'
+dotenv.config()
+
+const url = process.env.DB_URL
+console.log(url)
 
 export const connectDb = async () => {
     try {
