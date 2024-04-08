@@ -9,7 +9,7 @@ const movieController = new MovieController()
 
 router.get('/', movieController.get)
 router.get('/add', (req, res) => {
-    res.render('pages/addMovie', { errors: '' })
+    res.render('./pages/addMovie', { errors: '' })
 })
 router.post('/add', upload, registerValidator, movieController.create)
 router.get('/edit/:id', movieController.edit)

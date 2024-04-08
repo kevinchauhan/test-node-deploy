@@ -8,7 +8,7 @@ export class MovieController {
 
         if (!errors.isEmpty()) {
             console.log(req.body)
-            return res.render('pages/editMovie', { errors: errors.mapped(), movie: req.body })
+            return res.render('./pages/editMovie', { errors: errors.mapped(), movie: req.body })
         }
 
         try {
@@ -36,7 +36,7 @@ export class MovieController {
     async get(req, res) {
         try {
             const movies = await movieModel.find()
-            res.render('pages/index', { movies })
+            res.render('./pages/index', { movies })
         } catch (error) {
             console.log(error)
         }
@@ -63,7 +63,7 @@ export class MovieController {
         const { id } = req.params
         try {
             const movie = await movieModel.findOne({ _id: id })
-            res.render('pages/editMovie', { movie, errors: '' })
+            res.render('./pages/editMovie', { movie, errors: '' })
         } catch (error) {
             console.log(error)
         }

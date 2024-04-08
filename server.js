@@ -8,7 +8,7 @@ const PORT = 5501
 connectDb()
 
 // set static folder
-app.use(express.static('uploads'))
+app.use(express.static('./uploads'))
 
 // set template engine
 app.set('view engine', 'ejs')
